@@ -1,0 +1,17 @@
+<div class="m-5 d-flex flex-column align-items-center justify-content-center">
+    <form>
+        <h2>Ingreso Usuario Github</h2>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control mt-3" placeholder="Ingrese su usuario aquí" [(ngModel)]="username" name="username" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <app-submit-button 
+            class="d-flex justify-content-center" 
+            [username]="username"
+            (onClick)="getUsername($event)">
+        </app-submit-button>
+    </form>
+
+    <div [hidden]="showCard === false">
+        <app-profile-user [user]="user"></app-profile-user>
+    </div>
+</div>
