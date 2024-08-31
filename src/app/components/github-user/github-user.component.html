@@ -1,14 +1,22 @@
-<div class="m-5 d-flex flex-column align-items-center justify-content-center">
+<div class="m-3 d-flex flex-column align-items-center justify-content-center">
     <form>
-        <h2>Ingreso Usuario Github</h2>
-        <div class="input-group mb-3">
-            <input type="text" class="form-control mt-3" placeholder="Ingrese su usuario aquí" [(ngModel)]="username" name="username" aria-describedby="inputGroup-sizing-default">
+        <div class="d-flex justify-content-center me-5">
+            <img class="logo-size me-3" src="../../../assets/images/github.png" alt="github">
+            <h2 class="d-flex align-items-end mb-5 fw-bold fs-1">Buscador Github</h2>
         </div>
-        <app-submit-button 
-            class="d-flex justify-content-center" 
-            [username]="username"
-            (onClick)="getUsername($event)">
-        </app-submit-button>
+        <section class="d-flex justify-content-center ms-5">
+            <div class="input-group mb-3 input-size">
+                <input type="text" class="form-control mt-3" placeholder="Ingrese su usuario aquí" [(ngModel)]="username" name="username" aria-describedby="inputGroup-sizing-default">
+            </div>
+        </section>
+        <section class="d-flex justify-content-center">
+            <app-submit-button 
+                class="d-flex justify-content-center ms-3 me-3" 
+                [username]="username"
+                (onClick)="getUsername($event)">
+            </app-submit-button>
+            <button type="button" (click)="cleanData()" class="btn btn-secondary text-white">Limpiar</button>
+        </section>
     </form>
 
     <div [hidden]="showCard === false">

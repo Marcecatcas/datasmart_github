@@ -3,4 +3,5 @@ export interface Repo{
     node_id: string;
     name: string;
     description?: string;
+    html_url?: string;
 }

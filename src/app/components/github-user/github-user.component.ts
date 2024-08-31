@@ -87,4 +87,9 @@ constructor(private apiService: GithubApiService){}
     this.repos = repos;
   }
 
+  cleanData = () => {
+    this.username = '';
+    this.showCard = false;
+  }
+
 }
