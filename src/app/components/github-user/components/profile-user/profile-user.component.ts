@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from '../../../../interfaces/user';
 import { FormsModule } from '@angular/forms';
-
+import { User } from '../../../../interfaces/user';
+import { Repo } from '../../../../interfaces/repo';
 
 @Component({
   selector: 'app-profile-user',
@@ -13,7 +13,5 @@ import { FormsModule } from '@angular/forms';
 })
 export class ProfileUserComponent{
   @Input() user!: User;
-
-
-
+  @Input() repos: Repo[] | undefined;
 }

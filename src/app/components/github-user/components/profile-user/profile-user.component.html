@@ -1,14 +1,39 @@
 <div class="card d-flex justify-content-center mt-5 card-size">
     <div class="card-body d-flex">
-        <img [src]="user.avatar_url" alt="" class="image-size">
-        <div class="d-flex flex-column ms-3 info-size">
-            <h3 class="">{{user.login}}</h3>
-         <p class="d-fleX justify-content-center">{{user.bio ? user.bio : 'No tiene biografia disponible' }}</p>
-         <div class="d-flex justify-content-evenly">
-            <span><i class="bi bi-folder-fill fs-3"></i>{{user.public_repos}}</span>
-            <span><i class="bi bi-people-fill fs-3"></i> {{user.followers}}</span>
-         </div>
-        </div>
+        <section>
+            <h3 class="d-flex justify-content-center">{{user.login}}</h3>
+            <img [src]="user.avatar_url" alt="" class="image-size">
+            <div class="d-flex flex-column info-size">
+                <div class="d-flex justify-content-evenly mt-3">
+                   <span><i class="bi bi-folder-fill fs-3"></i>{{user.public_repos}}</span>
+                   <span><i class="bi bi-people-fill fs-3"></i> {{user.followers}}</span>
+                </div>
+             <p class="d-fleX justify-content-center mt-2 ms-3">{{user.bio ? user.bio : 'No tiene biografia disponible' }}</p>
+            </div>
+        </section>
+        <section class="ms-5 d-flex flex-column align-items-center table-size">
+         <h4 class="">Repositorios más recientes</h4>
+         <p *ngIf="repos?.length === 0">
+            No tiene repositorios disponibles <i class="bi bi-emoji-tear-fill fs-3 ms-1"></i>
+         </p>
+             <table class="table table-striped" *ngIf="repos?.length !== 0">
+                <thead>
+                  <tr>
+                    <th scope="col">N</th>
+                    <th scope="col">Repositorio</th>
+                    <th scope="col">Descripción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let repo of repos; let i=index">
+                    <td>{{i + 1}}</td>
+                    <td>{{repo.name}}</td>
+                    <td>{{repo.description ?  repo.description : 'no tiene descripción disponible'}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </section>
+
     </div>
 
   </div>
