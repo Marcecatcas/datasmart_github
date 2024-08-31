@@ -49,8 +49,8 @@ export class GithubUserComponent {
     created_at: "",
     updated_at: ""
   };
+  showCard: boolean = false;
 
-  showCard: boolean = true;
   
 constructor(private apiService: GithubApiService){}
 
@@ -60,6 +60,7 @@ constructor(private apiService: GithubApiService){}
       this.apiService.getUser(this.username).subscribe(
           userData => {
             this.getUserData(userData);
+           
           })
      
     } else {
