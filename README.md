@@ -1,27 +1,27 @@
-# GithubUser
+# Datamart-Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.2.
+Este proyecto de Angular implementa un componente llamado `GitHubUser` que permite a los usuarios buscar y visualizar información de un usuario de GitHub. Utiliza la API pública de GitHub para obtener los datos.
 
-## Development server
+## Funcionalidades
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+El componente `GitHubUser` proporciona las siguientes funcionalidades:
 
-## Code scaffolding
+- **Búsqueda de Usuarios**: Permite al usuario ingresar un nombre de usuario de GitHub en un campo de texto.
+  - Si el campo de búsqueda está vacío, se muestra un mensaje de advertencia.
+  - Si el usuario no existe en GitHub, se muestra un mensaje de error adecuado.
+- **Información del Usuario**: Muestra el nombre de usuario, la foto de perfil y la biografía del usuario de GitHub.
+- **Seguidores y Repositorios**: Muestra el número de seguidores y el número de repositorios públicos del usuario.
+- **Repositorios Recientes**: Muestra una lista de los repositorios más recientes del usuario, incluyendo el nombre y la descripción de cada repositorio.
+  - Cada repositorio reciente tiene un enlace que lleva directamente a la página del repositorio en GitHub.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Requisitos
 
-## Build
+- **Angular**: Este proyecto utiliza Angular, por lo que debes tener Angular CLI instalado.
+- **API de GitHub**: Utiliza la API pública de GitHub para obtener los datos necesarios. No se requiere autenticación para acceder a los endpoints utilizados en este proyecto.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Instalación
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. **Clona el repositorio**:
+   ```bash
+   git clone https://github.com/tu-usuario/github-user-angular.git
+   cd github-user-angular
