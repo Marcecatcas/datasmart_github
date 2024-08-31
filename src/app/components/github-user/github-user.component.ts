@@ -49,8 +49,13 @@ export class GithubUserComponent {
     created_at: "",
     updated_at: ""
   };
+  repos: any;
   showCard: boolean = false;
-
+  type: string = 'public';
+  page: number = 1;
+  items: number = 5; 
+  sort: string = 'updated'; 
+  direction: string = 'desc';
   
 constructor(private apiService: GithubApiService){}
 
@@ -60,7 +65,11 @@ constructor(private apiService: GithubApiService){}
       this.apiService.getUser(this.username).subscribe(
           userData => {
             this.getUserData(userData);
-           
+            this.apiService.getRecentsRepos(this.username,this.type, this.page, this.items, this.sort, this.direction).subscribe(
+              reposData => {
+                this.getReposData(reposData)
+              }
+            )
           })
      
     } else {
@@ -72,6 +81,10 @@ constructor(private apiService: GithubApiService){}
     this.username = user.login;
     this.user = user;
     this.showCard = true;
+  }
+
+  getReposData(repos: any){
+    this.repos = repos;
   }
 
 }
