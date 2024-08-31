@@ -1,6 +1,6 @@
-<div class="card d-flex justify-content-center mt-5 card-size">
-    <div class="card-body card-border d-flex">
-        <section>
+<div class="card d-flex justify-content-center mt-5">
+    <div class="card-body card-border d-flex card-size" *ngIf="error === false && showCard === true">
+         <section>
             <h3 class="d-flex justify-content-center">{{user.login}}</h3>
             <img [src]="user.avatar_url" alt="" class="image-size ms-4 border border-primary border-3 rounded">
             <div class="d-flex flex-column info-size">
@@ -8,7 +8,9 @@
                    <span><i class="bi bi-folder-fill fs-3 text-primary me-1"></i>{{user.public_repos}}</span>
                    <span><i class="bi bi-people-fill fs-3 text-primary"></i> {{user.followers}}</span>
                 </div>
-             <p class="d-flex justify-content-center mt-2">{{user.bio ? user.bio : 'Usuario sin biografia' }}</p>
+                <div class="d-flex flex-wrap text-break">
+                  <p class="d-flex justify-content-center mt-2">{{user.bio ? user.bio : 'Usuario sin biografia' }}</p>
+                </div>
             </div>
         </section>
         <section class="ms-5 d-flex flex-column align-items-center table-size">
@@ -32,11 +34,14 @@
                   </tr>
                 </tbody>
               </table>
+        </section> 
+      </div>
+      <div class="card-body card-border d-flex justify-content-center empty-card-size" *ngIf="error === true && showCard === true">
+        <section class="d-flex flex-column align-items-center">
+          <i class="bi bi-exclamation-triangle-fill fs-2"></i>
+          <h3>Usuario no encontrado</h3>
+          <img src="../../../../../assets/images/user.png" alt="" class="mt-2 image-size border border-3 rounded">
+          <p class="d-flex justify-content-center mt-3 fs-4">Intente nuevamente</p>
         </section>
-<!-- <section class="d-flex justify-content-center">
-  <h3 class="d-flex justify-content-center">Usuario no encontrado</h3>
-  <img src="../../../../../assets/images/user.png" alt="" class="image-size ms-4 border border-primary border-3 rounded">
-</section> -->
-    </div>
-
+      </div>
   </div>

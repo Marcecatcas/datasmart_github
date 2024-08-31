@@ -6,3 +6,14 @@ height: 150px;
 .input-size{
     width: 300px;
 }
+
+.error-message {
+    height: 20px; 
+    visibility: hidden; 
+    opacity: 0;
+  }
+
+  .error-message.visible {
+    visibility: visible;
+    opacity: 1;
+  }
