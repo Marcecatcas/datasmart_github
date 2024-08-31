@@ -9,11 +9,14 @@
                 <input type="text" class="form-control mt-3" placeholder="Ingrese su usuario aquí" [(ngModel)]="username" name="username" aria-describedby="inputGroup-sizing-default">
             </div>
         </section>
-        <app-submit-button 
-            class="d-flex justify-content-center ms-5" 
-            [username]="username"
-            (onClick)="getUsername($event)">
-        </app-submit-button>
+        <section class="d-flex justify-content-center">
+            <app-submit-button 
+                class="d-flex justify-content-center ms-3 me-3" 
+                [username]="username"
+                (onClick)="getUsername($event)">
+            </app-submit-button>
+            <button type="button" (click)="cleanData()" class="btn btn-secondary text-white">Limpiar</button>
+        </section>
     </form>
 
     <div [hidden]="showCard === false">

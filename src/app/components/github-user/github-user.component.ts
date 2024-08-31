@@ -64,7 +64,6 @@ constructor(private apiService: GithubApiService){}
       this.username = username;
       this.apiService.getUser(this.username).subscribe(
           userData => {
-            console.log(userData,'llega?')
             this.getUserData(userData);
             this.apiService.getRecentsRepos(this.username,this.type, this.page, this.items, this.sort, this.direction).subscribe(
               reposData => {
@@ -86,6 +85,11 @@ constructor(private apiService: GithubApiService){}
 
   getReposData(repos: any){
     this.repos = repos;
+  }
+
+  cleanData = () => {
+    this.username = '';
+    this.showCard = false;
   }
 
 }
