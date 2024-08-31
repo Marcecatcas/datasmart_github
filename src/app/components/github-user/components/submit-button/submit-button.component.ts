@@ -18,10 +18,5 @@ constructor(private apiService: GithubApiService){}
   getData = () => {
         this.onClick.emit(this.username);
      } 
-
-  cleanData = () => {
-    this.onClick.emit('');
-  }
-   
   }
 
