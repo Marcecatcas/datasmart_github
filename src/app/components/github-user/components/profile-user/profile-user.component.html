@@ -1,9 +1,13 @@
 <div class="card d-flex justify-content-center mt-5 card-size">
     <div class="card-body d-flex">
         <img [src]="user.avatar_url" alt="" class="image-size">
-        <div class="d-flex flex-column ms-3">
+        <div class="d-flex flex-column ms-3 info-size">
             <h3 class="">{{user.login}}</h3>
-         <p>{{user.bio ? user.bio : 'No tiene biografia disponible' }}</p>
+         <p class="d-fleX justify-content-center">{{user.bio ? user.bio : 'No tiene biografia disponible' }}</p>
+         <div class="d-flex justify-content-evenly">
+            <span><i class="bi bi-folder-fill fs-3"></i>{{user.public_repos}}</span>
+            <span><i class="bi bi-people-fill fs-3"></i> {{user.followers}}</span>
+         </div>
         </div>
     </div>
 
