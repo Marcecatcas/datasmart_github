@@ -9,17 +9,22 @@
                 <input type="text" class="form-control mt-3" placeholder="Ingrese su usuario aquí" [(ngModel)]="username" name="username" aria-describedby="inputGroup-sizing-default">
             </div>
         </section>
-        <section class="d-flex justify-content-center">
-            <app-submit-button 
-                class="d-flex justify-content-center ms-3 me-3" 
-                [username]="username"
-                (onClick)="getUsername($event)">
-            </app-submit-button>
-            <button type="button" (click)="cleanData()" class="btn btn-secondary text-white">Limpiar</button>
+        <section class="d-flex flex-column align-items-center">
+            <span class="error-message text-danger ms-5 mb-3" [ngClass]="{ 'visible': invalid === true }">
+                El nombre de usuario no es válido.
+            </span>
+            <div class="d-flex justify-content-center">
+          <app-submit-button 
+              class="d-flex justify-content-center ms-3 me-3" 
+              [username]="username"
+              (onClick)="getUsername($event)">
+          </app-submit-button>
+          <button type="button" (click)="cleanData()" class="btn btn-secondary text-white">Limpiar</button>
+              </div>  
         </section>
     </form>
 
     <div [hidden]="showCard === false">
-        <app-profile-user [user]="user" [repos]="repos"></app-profile-user>
+        <app-profile-user [user]="user" [repos]="repos" [error]="error" [showCard]="showCard"></app-profile-user>
     </div>
 </div>

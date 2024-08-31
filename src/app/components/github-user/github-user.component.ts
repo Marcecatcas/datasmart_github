@@ -4,12 +4,13 @@ import { User } from "../../interfaces/user";
 import { ProfileUserComponent } from "./components/profile-user/profile-user.component";
 import { SubmitButtonComponent } from "./components/submit-button/submit-button.component";
 import { GithubApiService } from "../../services/github-api.service";
+import { CommonModule } from "@angular/common";
 
 
 @Component({
   selector: 'app-github-user',
   standalone: true,
-  imports: [SubmitButtonComponent, ProfileUserComponent, FormsModule],
+  imports: [SubmitButtonComponent, ProfileUserComponent, FormsModule, CommonModule],
   templateUrl: './github-user.component.html',
   styleUrl: './github-user.component.scss',
 })
@@ -49,6 +50,8 @@ export class GithubUserComponent {
     created_at: "",
     updated_at: ""
   };
+  invalid: boolean = false;
+  error: boolean = false;
   repos: any;
   showCard: boolean = false;
   type: string = 'public';
@@ -59,37 +62,60 @@ export class GithubUserComponent {
   
 constructor(private apiService: GithubApiService){}
 
-  getUsername(username: any) {
-    if (username !== '' || username !== undefined || username !== null ) {
+  getUsername(username: string) {
+    this.getisDisabled()
+    if (this.username.trim() || username.trim()) {
       this.username = username;
-      this.apiService.getUser(this.username).subscribe(
-          userData => {
+      this.error = false;
+      this.invalid = false;
+      this.apiService.getUser(this.username).subscribe({
+          next: (userData: any) => {
+          if (userData && !userData.hasOwnProperty('message')) {
             this.getUserData(userData);
-            this.apiService.getRecentsRepos(this.username,this.type, this.page, this.items, this.sort, this.direction).subscribe(
-              reposData => {
-                this.getReposData(reposData)
-              }
-            )
-          })
-     
+            this.setReposData();
+          } else {
+            this.error = true;
+            this.showCard = true;
+          }
+        },
+      error: (e: any) => {
+        this.error = true;
+        this.showCard = true;
+      }
+    })
     } else {
       console.log('ingresa un usuario valido');
+      this.invalid = true
     }
   }
-
-  getUserData(user: User) {
+  setReposData = () =>{
+    this.apiService.getRecentsRepos(this.username,this.type, this.page, this.items, this.sort, this.direction).subscribe({
+      next: (reposData: any) => {
+        this.getReposData(reposData);
+      },
+      error: (reposError: any) => {
+        console.error('Error al obtener repositorios:', reposError);
+        this.error = true;
+      }
+  })
+  }
+  getUserData = (user: User) => {
     this.username = user.login;
     this.user = user;
     this.showCard = true;
   }
-
-  getReposData(repos: any){
+  getReposData = (repos: any) => {
     this.repos = repos;
   }
-
   cleanData = () => {
     this.username = '';
     this.showCard = false;
+    this.error = false;
+    this.invalid = false;
   }
 
+  getisDisabled = () => {
+    if (this.username.trim()) 
+      this.invalid = true
+  }
 }

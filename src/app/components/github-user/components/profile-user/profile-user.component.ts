@@ -14,4 +14,7 @@ import { Repo } from '../../../../interfaces/repo';
 export class ProfileUserComponent{
   @Input() user!: User;
   @Input() repos: Repo[] | undefined;
+  @Input() error?: boolean | null;
+  @Input() showCard?: boolean | null;
+  
 }
